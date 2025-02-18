@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-  // THIS ARE OUR NAV LINKS ...ADD MORE LINKS HERE AND THE ROUTE IF YOU INTEND TO EXPAND
   const links = [
     { to: '/', label: 'Home' },
     { to: '/vote', label: 'Vote' },
@@ -14,6 +12,7 @@ const Navbar = () => {
     { to: '/aboutus', label: 'About Us' },
     { to: '/register', label: 'Register' },
     { to: '/faqs', label: 'FAQs' },
+    { to: '/admin', label: 'Admin Dashboard' },
   ];
 
   return (
