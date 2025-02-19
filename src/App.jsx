@@ -13,8 +13,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<div className="p-8">Home Page</div>} />
-            <Route path="/vote" element={<div className="p-8">Voting Page</div>} />
-            <Route path="/blogs" element={<div className="p-8">Blogs Page</div>} />
+            <Route path="/vote" element={<VotingPage/>} />
+            <Route path="/category" element={<Category/>}/>
             <Route path="/gallery" element={<div className="p-8">Gallery Page</div>} />
             <Route path="/aboutus" element={<div className="p-8">About Us Page</div>} />
             <Route path="/faqs" element={<div className="p-8">FAQs Page</div>} />
