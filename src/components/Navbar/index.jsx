@@ -9,7 +9,9 @@ const Navbar = () => {
     { to: '/vote', label: 'Vote' },
     { to: '/category', label: 'Category' },
     { to: '/aboutus', label: 'About Us' },
-    { to: '/register', label: 'Register', isSpecial: true },
+    { to: '/register', label: 'Register' },
+    { to: '/faqs', label: 'FAQs' },
+    { to: '/admin', label: 'Admin Dashboard' },
   ];
 
   return (

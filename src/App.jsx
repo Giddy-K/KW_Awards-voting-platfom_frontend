@@ -1,23 +1,29 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Category from './pages/Category';
-import VotingPage from './pages/Voting';
+import { Provider } from 'react-redux';
+import store from './components/store/Store';
 import Navbar from './components/Navbar';
+import AdminDashboard from './pages/admin/AdminDashBoard';
+import Register from './pages/Register/index';
 
 function App() {
   return (
-    <Router>
-      <div className="App min-h-screen min-w-screen bg-gradient-to-b from-[#2C1810] to-[#1a0f0a]">
-        <Navbar />
-        <main className=" px-4 pt-20 pb-12">
+    <Provider store={store}>
+      <Router>
+        <div className="min-h-screen">
+          <Navbar />
           <Routes>
-            <Route path="/category" element={<Category />} />
-            <Route path="/vote" element={<VotingPage />} />
+            <Route path="/" element={<div className="p-8">Home Page</div>} />
+            <Route path="/vote" element={<div className="p-8">Voting Page</div>} />
+            <Route path="/blogs" element={<div className="p-8">Blogs Page</div>} />
+            <Route path="/gallery" element={<div className="p-8">Gallery Page</div>} />
+            <Route path="/aboutus" element={<div className="p-8">About Us Page</div>} />
+            <Route path="/faqs" element={<div className="p-8">FAQs Page</div>} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
-        </main>
-        <footer className="text-center text-gray-400 text-sm py-4">
-        </footer>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
