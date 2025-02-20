@@ -4,6 +4,10 @@ import store from './components/store/Store';
 import Navbar from './components/Navbar';
 import AdminDashboard from './pages/admin/AdminDashBoard';
 import Register from './pages/Register/index';
+import AboutUs from './pages/AboutUs/index';
+import VotingPage from './pages/Voting/index'; 
+import Category from './pages/Category/index';
+
 
 function App() {
   return (
@@ -16,7 +20,7 @@ function App() {
             <Route path="/vote" element={<VotingPage/>} />
             <Route path="/category" element={<Category/>}/>
             <Route path="/gallery" element={<div className="p-8">Gallery Page</div>} />
-            <Route path="/aboutus" element={<div className="p-8">About Us Page</div>} />
+            <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/faqs" element={<div className="p-8">FAQs Page</div>} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminDashboard />} />
