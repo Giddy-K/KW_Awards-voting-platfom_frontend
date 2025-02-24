@@ -16,23 +16,27 @@ A React-based web application for managing and voting in the KW Awards ceremony.
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js (v18 or higher)
 - npm (v9 or higher)
 
 ## ⚙️ Installation
 
 1. Clone the repository:
+
 ```bash
 git clone [repository-url]
 cd kw-awards-voting-platfom-frontend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
-3. Start the development server:
+3. Start the development server
+
 ```bash
 npm run dev
 ```
@@ -67,6 +71,7 @@ src/
 ## 🔄 Component Relationships
 
 ### App.jsx
+
 - Main application component
 - Sets up routing using React Router
 - Integrates Redux store
@@ -76,16 +81,19 @@ src/
 ### Components
 
 #### Navbar (components/Navbar/index.jsx)
+
 - Responsive navigation bar
 - Handles mobile menu toggle
 - Contains links to all major sections
 - Sticky positioning for better UX
 
 #### Store (components/store/Store.jsx)
+
 - Configures Redux store
 - Integrates dashboard reducer
 
 #### Dashboard Slice (components/store/slices/dashboardSlice.jsx)
+
 - Manages dashboard state
 - Includes reducers for stats, pending artists, and recent votes
 - Defines initial state and actions
@@ -93,11 +101,13 @@ src/
 ### Pages
 
 #### Register (pages/Register/index.jsx)
+
 - Nominee registration form
 - Handles form state using React useState
 - Form validation and submission logic
 
 #### AdminDashboard (pages/admin/AdminDashBoard.jsx)
+
 - Comprehensive dashboard with statistics
 - Integrates charts using Recharts
 - Includes filtering and search functionality
@@ -107,6 +117,7 @@ src/
 ## 🎨 Styling
 
 The project uses Tailwind CSS for styling with:
+
 - Responsive design principles
 - Custom color schemes
 - Flexible grid layouts
