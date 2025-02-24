@@ -1,19 +1,33 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Register from './pages/Register';
+import { Provider } from 'react-redux';
+import store from './components/store/Store';
+import Navbar from './components/Navbar';
+import AdminDashboard from './pages/admin/AdminDashBoard';
+import Register from './pages/Register/index';
+import AboutUs from './pages/AboutUs/index';
+import VotingPage from './pages/Voting/index'; 
+import Category from './pages/Category/index';
 
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <main className="p-8">
+    <Provider store={store}>
+      <Router>
+        <div className="min-h-screen">
+          <Navbar />
           <Routes>
-            //Add Your Page Router HEre
+            <Route path="/" element={<div className="p-8">Home Page</div>} />
+            <Route path="/vote" element={<VotingPage/>} />
+            <Route path="/category" element={<Category/>}/>
+            <Route path="/gallery" element={<div className="p-8">Gallery Page</div>} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/faqs" element={<div className="p-8">FAQs Page</div>} />
             <Route path="/register" element={<Register />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
-        </main>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
