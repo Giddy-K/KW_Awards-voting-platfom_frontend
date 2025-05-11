@@ -30,4 +30,7 @@ jobs:
         git config --global user.name "GitHub Actions"
 
     - name: Deploy to GitHub Pages
-      run: npm run deploy
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npm run deploy
