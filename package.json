@@ -12,7 +12,7 @@
     "deploy": "gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/Giddy-K/KW_Awards-voting-platfom_frontend.git"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.9.0",
+    "@reduxjs/toolkit": "^2.9.1",
     "kw-awards-voting-platfom-frontend": "file:",
     "lucide-react": "^0.545.0",
     "react": "^18.3.1",
