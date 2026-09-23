@@ -1,0 +1,25 @@
+{
+  // Incremental TypeScript migration: JS files are compiled (allowJs) but not
+  // type-checked (checkJs: false). Rename a file to .ts/.tsx to opt it in to
+  // strict checking, or add `// @ts-check` at the top of a .js file.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
