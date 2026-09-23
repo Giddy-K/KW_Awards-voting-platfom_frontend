@@ -76,7 +76,7 @@ const ArtistVotingDashboard = () => {
             {/* Label for medium and larger screens */}
             <span className="hidden md:inline">{label}</span>
             {/* Tooltip for small screens */}
-            <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 md:hidden">
+            <div className="absolute left-14 bg-gray-800 text-white px-2 py-1 rounded-sm text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 md:hidden">
               {label}
             </div>
           </button>
@@ -142,7 +142,7 @@ const ArtistVotingDashboard = () => {
   };
 
   const ApprovalModal = ({ artist, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg p-4 w-full max-w-lg">
         <h3 className="text-lg font-semibold mb-4">Artist Approval - {artist.name}</h3>
         <div className="mb-4">
@@ -155,13 +155,13 @@ const ArtistVotingDashboard = () => {
         <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
           <button
             onClick={() => onClose(false)}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-blue-500"
+            className="px-4 py-2 bg-red-500 text-white rounded-sm hover:bg-blue-500"
           >
             Reject
           </button>
           <button
             onClick={() => onClose(true)}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-500"
+            className="px-4 py-2 bg-green-500 text-white rounded-sm hover:bg-blue-500"
           >
             Approve
           </button>
@@ -176,7 +176,7 @@ const ArtistVotingDashboard = () => {
       
       {/* Main Content - adapts to sidebar width */}
       <div className="flex-1 pl-16 md:pl-64 transition-all duration-300">
-        <header className="bg-white shadow sticky top-0 z-20">
+        <header className="bg-white shadow-sm sticky top-0 z-20">
           <div className="px-4 py-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
               <h2 className="text-xl font-semibold text-gray-800">
@@ -190,7 +190,7 @@ const ArtistVotingDashboard = () => {
                     placeholder="Search..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-hidden focus:border-blue-500"
                   />
                   <Search className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
                 </div>
@@ -208,7 +208,7 @@ const ArtistVotingDashboard = () => {
               { icon: Vote, label: 'Total Votes', value: stats.totalVotes, color: 'green' },
               { icon: BadgeCheck, label: 'Pending Approvals', value: stats.pendingApprovals, color: 'purple' }
             ].map(({ icon: Icon, label, value, color }) => (
-              <div key={label} className="bg-white rounded-lg shadow p-4">
+              <div key={label} className="bg-white rounded-lg shadow-sm p-4">
                 <div className="flex items-center">
                   <div className={`p-3 rounded-full bg-${color}-100`}>
                     <Icon className={`w-6 h-6 text-${color}-500`} />
@@ -224,7 +224,7 @@ const ArtistVotingDashboard = () => {
 
           {/* Charts - responsive layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Voting Trends</h3>
               <div className="h-60 sm:h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -253,7 +253,7 @@ const ArtistVotingDashboard = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-4">
+            <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Votes by Genre</h3>
               <div className="h-60 sm:h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -280,7 +280,7 @@ const ArtistVotingDashboard = () => {
           {/* Recent Activity - responsive grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pending Approvals */}
-            <div className="bg-white rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow-sm">
               <div className="p-4 border-b">
                 <h3 className="text-lg font-semibold text-gray-800">Pending Artist Approvals</h3>
               </div>
@@ -297,7 +297,7 @@ const ArtistVotingDashboard = () => {
                           setSelectedArtist(artist);
                           setShowApprovalModal(true);
                         }}
-                        className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                        className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded-sm hover:bg-blue-600 transition-colors"
                       >
                         Review
                       </button>
@@ -308,7 +308,7 @@ const ArtistVotingDashboard = () => {
             </div>
 
             {/* Recent Votes */}
-            <div className="bg-white rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow-sm">
               <div className="p-4 border-b">
                 <h3 className="text-lg font-semibold text-gray-800">Recent Votes</h3>
               </div>
