@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Category = () => {
@@ -63,7 +63,7 @@ const Category = () => {
                 {displayedCategories.map((category, index) => (
                     <div key={index} className="bg-[#3D261C] rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
                         <h2 className="text-xl font-semibold mb-4 text-[#FFD700]">{category.title}</h2>
-                        <select className="w-full p-2 rounded-md bg-[#2C1810] border border-[#FFD700] text-white focus:outline-none focus:ring-2 focus:ring-[#FFD700]">
+                        <select className="w-full p-2 rounded-md bg-[#2C1810] border border-[#FFD700] text-white focus:outline-hidden focus:ring-2 focus:ring-[#FFD700]">
                             <option value="">Select nominee</option>
                             {category.nominees.map((nominee, idx) => (
                                 <option key={idx} value={nominee} className="bg-[#2C1810]">

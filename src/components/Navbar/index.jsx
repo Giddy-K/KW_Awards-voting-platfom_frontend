@@ -51,12 +51,12 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="bg-transparent  md:hidden focus:outline-none"
+          className="bg-transparent  md:hidden focus:outline-hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
           <div className="flex flex-col space-y-1">
-            <span className={`block w-6 h-0.5 bg-7white transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
             <span className={`block w-6 h-0.5 bg-white transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
           </div>

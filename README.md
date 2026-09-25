@@ -1,168 +1,133 @@
-# KW Awards Voting Platform Frontend
+# KW Awards Voting Platform: Frontend
 
-A React-based web application for managing and voting in the KW Awards ceremony. The platform includes user registration, voting system, admin dashboard, and various other features.
+React single-page app for the KW Awards voting platform. The Django API lives
+in a separate repository (`KW_Awards-voting-platfom`).
 
-## 🚀 Features
+> **Status:** early development. The pages are built but **not connected to
+> the backend yet**: the voting, category and admin pages use hardcoded mock
+> data, the registration form only logs to the console, and there is no
+> login or route protection. See the "Not implemented yet" list below and
+> `AUDIT.md` (in the workspace root) for the roadmap.
 
-- User registration for nominees
-- Voting system
-- Admin dashboard with statistics and charts
-- Responsive design for mobile and desktop
-- Real-time data visualization
-- Genre-based filtering
-- Search functionality
-- Artist approval system
+## Tech stack
 
-## 📋 Prerequisites
+| | Version |
+|---|---|
+| Node.js | 24 LTS (`.nvmrc`, `engines`) |
+| React | 18.3.1 |
+| Vite | 8.3 (`@vitejs/plugin-react` 6.1) |
+| Tailwind CSS | 4.3 (CSS-first config, `@tailwindcss/vite`) |
+| React Router | 6.30 |
+| Redux Toolkit / react-redux | 2.12 / 9.3 |
+| Recharts | 2.15 |
+| Icons | lucide-react, react-icons |
+| Tooling | ESLint 9 (flat config), TypeScript 6 (incremental), npm |
 
-Before you begin, ensure you have the following installed:
+All versions are pinned exactly in `package.json`.
 
-- Node.js (v18 or higher)
-- npm (v9 or higher)
-
-## ⚙️ Installation
-
-1. Clone the repository:
-
-```bash
-git clone [repository-url]
-cd kw-awards-voting-platfom-frontend
-```
-
-2. Install dependencies:
+## Getting started
 
 ```bash
-npm install
+nvm use            # or install Node 24
+npm ci
+cp .env.example .env.local   # optional, see below
+npm run dev        # http://localhost:4500
 ```
 
-3. Start the development server
+### Environment variables
 
-```bash
-npm run dev
-```
+| Variable | Purpose |
+|---|---|
+| `VITE_API_URL` | Base URL of the backend API, no trailing slash. Defaults to `http://localhost:8000/api` in the dev server. **Must be set for production builds.** |
 
-The application will be available at `http://localhost:5173`
+Read through `src/config.js`. Only `VITE_`-prefixed variables reach the
+browser, so never put secrets in them.
 
-## 🛠️ Tech Stack
+## Scripts
 
-- **React** (v18.3.1) - Frontend framework
-- **Redux Toolkit** (v2.5.1) - State management
-- **React Router DOM** (v6.29.0) - Routing
-- **Recharts** (v2.15.1) - Data visualization
-- **Lucide React** (v0.263.1) - Icons
-- **Tailwind CSS** (v3.4.17) - Styling
-- **Vite** (v6.1.0) - Build tool
+| Command | What it does |
+|---|---|
+| `npm run dev` | Vite dev server on port 4500 |
+| `npm run build` | Production build into `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | ESLint (JS/JSX and TS/TSX) |
+| `npm run typecheck` | `tsc --noEmit` |
 
-## 📁 Project Structure
+CI (`.github/workflows/ci.yml`) runs `npm ci`, lint, typecheck, build and a
+runtime-dependency audit on every push and pull request. **There is no
+deployment workflow yet**; hosting is decided later.
+
+## Project structure
 
 ```
 src/
-├── components/           # Reusable components
-│   ├── Navbar/          # Navigation component
-│   └── store/           # Redux store configuration
-│       └── slices/      # Redux slices
-├── pages/               # Page components
-│   ├── Register/        # Nominee registration
-│   └── admin/          # Admin dashboard
-├── assets/             # Static assets
-└── App.jsx             # Main application component
+├── App.jsx                 # Router, Redux provider, lazy-loaded routes
+├── config.js               # VITE_API_URL
+├── index.css               # Tailwind import, @theme tokens, base styles
+├── components/
+│   ├── Navbar/             # Responsive top navigation
+│   └── store/              # Redux store and slices (dashbardSlice.jsx, sic)
+└── pages/
+    ├── Home/               # Landing page
+    ├── Voting/             # Voting list (mock data)
+    ├── Category/           # Categories (mock data)
+    ├── Register/           # Nominee registration form (not submitted anywhere)
+    ├── AboutUs/            # Static content (placeholder text)
+    ├── admin/              # Admin dashboard (mock data)
+    └── NotFound/           # 404
 ```
 
-## 🔄 Component Relationships
+## Routes
 
-### App.jsx
+| Path | Page | Notes |
+|---|---|---|
+| `/` | Home | |
+| `/vote` | Voting | mock candidates; the Vote button only logs |
+| `/category` | Category | mock categories |
+| `/register` | Register | form state only; submission not implemented |
+| `/aboutus` | About Us | placeholder text |
+| `/gallery`, `/faqs` | placeholders | |
+| `/admin` | Admin dashboard | mock data, **not protected** |
+| `*` | 404 | |
 
-- Main application component
-- Sets up routing using React Router
-- Integrates Redux store
-- Includes Navbar component
-- Defines routes for different pages
+Every page except Home is loaded with `React.lazy` + `Suspense`, so the
+heavy charts library only downloads when `/admin` is visited.
 
-### Components
+## Styling
 
-#### Navbar (components/Navbar/index.jsx)
+Tailwind CSS v4 with CSS-first configuration: design tokens live in the
+`@theme` block in `src/index.css` (`gold`, `gold-dark`, `brown-800`,
+`brown-900`). There is no `tailwind.config.js`. Avoid building class names
+dynamically (`bg-${color}-100`); Tailwind only generates classes that appear
+as complete strings in the source.
 
-- Responsive navigation bar
-- Handles mobile menu toggle
-- Contains links to all major sections
-- Sticky positioning for better UX
+## TypeScript
 
-#### Store (components/store/Store.jsx)
+The project is migrating to TypeScript incrementally. `tsconfig.json` has
+`allowJs` on and `checkJs` off, so existing `.js`/`.jsx` files keep working
+and are not type-checked. Convert a file by renaming it to `.ts`/`.tsx`; it
+is then checked strictly (`npm run typecheck`) and linted with
+typescript-eslint. `react/prop-types` is off because types replace it.
 
-- Configures Redux store
-- Integrates dashboard reducer
+## Not implemented yet
 
-#### Dashboard Slice (components/store/slices/dashboardSlice.jsx)
+- Any call to the backend (voting, nominees, categories, stats)
+- Authentication (login, token storage, logout) and protected routes
+- Nominee approval, search, and genre filtering wired to real data
+- Real content for About/FAQ/Contact
+- Deployment / hosting
 
-- Manages dashboard state
-- Includes reducers for stats, pending artists, and recent votes
-- Defines initial state and actions
+## Known issues
 
-### Pages
+- `npm audit` reports 2 moderate advisories in React Router 6.x; the fix is
+  in v7 (major migration, deferred). The SSR advisory does not apply, and the
+  open-redirect one needs user-controlled navigation targets, which the app
+  does not use.
+- ESLint 9 is flagged as unsupported upstream, but the React plugin does not
+  support ESLint 10 yet.
 
-#### Register (pages/Register/index.jsx)
+## Contributing
 
-- Nominee registration form
-- Handles form state using React useState
-- Form validation and submission logic
-
-#### AdminDashboard (pages/admin/AdminDashBoard.jsx)
-
-- Comprehensive dashboard with statistics
-- Integrates charts using Recharts
-- Includes filtering and search functionality
-- Shows pending approvals and recent votes
-- Responsive design with sidebar navigation
-
-## 🎨 Styling
-
-The project uses Tailwind CSS for styling with:
-
-- Responsive design principles
-- Custom color schemes
-- Flexible grid layouts
-- Interactive components
-- Smooth transitions and animations
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
-
-## 💡 Development Notes
-
-1. **State Management**
-   - Redux is used for global state management
-   - Local state with useState for component-specific state
-   - Redux slices for modular state management
-
-2. **Routing**
-   - Protected routes for admin section
-   - Dynamic routing for different sections
-   - Nested routes where applicable
-
-3. **Performance**
-   - Lazy loading for routes
-   - Optimized chart rendering
-   - Responsive image handling
-   - Efficient state updates
-
-4. **Best Practices**
-   - Component reusability
-   - Proper error handling
-   - Consistent coding style
-   - Mobile-first approach
-
-## 🤝 Contributing
-
-1. git add .
-2. Create your feature branch (`git checkout -b feature/KW_Awards-voting-platfom_frontend`)
-3. Commit your changes (`git commit -m 'Add some KW_Awards-voting-platfom_frontend'`)
-4. Push to the branch (`git push origin feature/KW_Awards-voting-platfom_frontend`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. Create a branch: `git checkout -b feature/short-description`
+2. Make small commits; run `npm run lint && npm run typecheck && npm run build`
+3. Push the branch and open a pull request; CI must pass.

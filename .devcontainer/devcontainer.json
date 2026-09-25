@@ -1,31 +1,13 @@
 {
-    "name": "Python 3 & PostgreSQL",
-    "service": "app",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    "features": {
-        "ghcr.io/itsmechlark/features/postgresql:1": {
-            "version": "14"
-        },
-        "ghcr.io/hspaans/devcontainer-features/django-upgrade:1": {
-            "version": "latest"
-        },
-        "ghcr.io/devcontainers-extra/features/pipx-package:1": {
-            "includeDeps": true,
-            "package": "black",
-            "version": "latest",
-            "injections": "pylint pytest",
-            "interpreter": "python3"
-        },
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "lts"
-        }
-    },
-    "postCreateCommand": "npm install -g create-react-app",
+    "name": "KW Awards Frontend (Node 24)",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:1-24-bookworm",
+    "forwardPorts": [4500],
+    "postCreateCommand": "npm ci",
     "customizations": {
         "vscode": {
             "extensions": [
                 "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode"
+                "bradlc.vscode-tailwindcss"
             ]
         }
     }

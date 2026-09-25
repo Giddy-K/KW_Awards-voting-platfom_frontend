@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const VotingPage = () => {
@@ -31,7 +31,7 @@ const VotingPage = () => {
                 <input
                     type="text"
                     placeholder="Search candidates..."
-                    className="w-full pl-10 pr-4 py-2 bg-brown-800 border border-yellow-700 rounded-lg focus:outline-none focus:border-yellow-600"
+                    className="w-full pl-10 pr-4 py-2 bg-brown-800 border border-yellow-700 rounded-lg focus:outline-hidden focus:border-yellow-600"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
